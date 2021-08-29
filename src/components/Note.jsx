@@ -49,7 +49,6 @@ function Note(props) {
                     ? { textDecoration: "line-through" }
                     : {textDecoration: "none"}
                 } 
-              // onClick={() => handleChecked(index)}
               >
             {showCheckboxes && <Checkbox name="content-checkbox" onClick={()=>{handleChecked(index)}}></Checkbox>}
             {e}

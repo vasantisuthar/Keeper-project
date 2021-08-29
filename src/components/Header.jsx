@@ -3,9 +3,7 @@ import HighlightIcon from "@material-ui/icons/Highlight";
 
 
 function Header() {
-
-  
-  return (
+return (
     <div className="header">
       <h1>
         <HighlightIcon />
