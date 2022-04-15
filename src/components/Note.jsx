@@ -39,10 +39,12 @@ function Note(props) {
 
   return (
     <div className="note">
+    
     <h1>{props.title}</h1>
+    {console.log(props)}
     <div className="note-div">
       <ul>
-        {props.content.split('\n').map((e,index) => 
+        {props?props.content.split('\n').map((e,index) => 
           <li key={index}>
           <p style={
                   isIndex.includes(index)
@@ -54,7 +56,7 @@ function Note(props) {
             {e}
             </p>
           </li>
-          )}
+          ): null}
       </ul>
     </div>
       
