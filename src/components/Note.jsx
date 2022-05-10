@@ -41,7 +41,6 @@ function Note(props) {
     <div className="note">
     
     <h1>{props.title}</h1>
-    {console.log(props)}
     <div className="note-div">
       <ul>
         {props?props.content.split('\n').map((e,index) => 
@@ -82,9 +81,9 @@ function Note(props) {
         >
           Delete Note
         </MenuItem>
-       { showCheckboxes ? 
+      { showCheckboxes ? 
       <MenuItem onClick={() => {handleClose(); handleCheckboxes();}}>Remove checkbox</MenuItem> : 
-       <MenuItem onClick={() => {handleClose(); handleCheckboxes();}}>Add checkbox</MenuItem>}
+      <MenuItem onClick={() => {handleClose(); handleCheckboxes();}}>Add checkbox</MenuItem>}
       </Menu>
     </div>
   );

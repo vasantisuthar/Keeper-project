@@ -17,18 +17,18 @@ function Home() {
           data : doc.data()
         }))
       )
-
     })
-    console.log(notes)
-
   }, []);
 
   function addNote(newNote) {
+    console.log(newNote);
     db.collection("notes").add({
       title: newNote.title,
       content: newNote.content
     }).then(() => {
       console.log("data added")
+    }).catch(() => {
+
     })
     // setNotes((prevNotes) => {
     //   return [...prevNotes, newNote];
@@ -36,11 +36,12 @@ function Home() {
   }
 
   function deleteNote(id) {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((noteItem, index) => {
-        return index !== id;
-      });
-    });
+    db.collection('notes').doc(id).delete();
+    // setNotes((prevNotes) => {
+    //   return prevNotes.filter((noteItem, index) => {
+    //     return index !== id;
+    //   });
+    // });
   }
 
   function handleEditChange(id, text){
@@ -55,8 +56,8 @@ function Home() {
           <Note
             key={index}
             id={index}
-            title={data.title}
-            content={data.content}
+            title={data.data.title}
+            content={data.data.content}
             onDelete={deleteNote}
           />
         );
