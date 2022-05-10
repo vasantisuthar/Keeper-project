@@ -51,14 +51,15 @@ function Home() {
   return (
     <div>
       <CreateArea onAdd={addNote} onEdit={handleEditChange}/>
-      {notes.map((data, index) => {
+      {notes.map((data, id) => {
         return (
           <Note
-            key={index}
-            id={index}
+            key={data.id}
+            id={data.id}
             title={data.data.title}
             content={data.data.content}
             onDelete={deleteNote}
+
           />
         );
       })}
