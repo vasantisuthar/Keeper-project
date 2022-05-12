@@ -30,18 +30,10 @@ function Home() {
     }).catch(() => {
 
     })
-    // setNotes((prevNotes) => {
-    //   return [...prevNotes, newNote];
-    // });
   }
 
   function deleteNote(id) {
     db.collection('notes').doc(id).delete();
-    // setNotes((prevNotes) => {
-    //   return prevNotes.filter((noteItem, index) => {
-    //     return index !== id;
-    //   });
-    // });
   }
 
   function handleEditChange(id, text){
@@ -59,7 +51,6 @@ function Home() {
             title={data.data.title}
             content={data.data.content}
             onDelete={deleteNote}
-
           />
         );
       })}
