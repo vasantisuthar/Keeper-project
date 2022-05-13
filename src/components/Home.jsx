@@ -8,9 +8,12 @@ import db from '../firebase/firebase';
 function Home() {
   
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [addNotes, setAddNotes] = useState(false);
 
   useEffect(() => {
     db.collection("notes").onSnapshot((snapShot) => {
+      setLoading(false);
       setNotes(
         snapShot.docs.map((doc) =>({
           id: doc.id,
@@ -21,14 +24,12 @@ function Home() {
   }, []);
 
   function addNote(newNote) {
-    console.log(newNote);
+    setAddNotes(true);
     db.collection("notes").add({
       title: newNote.title,
       content: newNote.content
     }).then(() => {
-      console.log("data added")
-    }).catch(() => {
-
+      setAddNotes(false);
     })
   }
 
@@ -36,14 +37,12 @@ function Home() {
     db.collection('notes').doc(id).delete();
   }
 
-  function handleEditChange(id, text){
-    setEdit(id);
-  }
-
   return (
     <div>
-      <CreateArea onAdd={addNote} onEdit={handleEditChange}/>
-      {notes.map((data, id) => {
+      <CreateArea onAdd={addNote}/>
+      {loading && <div>Loading...</div>}
+      {addNotes && <div>Adding note....</div>}
+      {notes && notes.map((data, id) => {
         return (
           <Note
             key={data.id}
